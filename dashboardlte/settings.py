@@ -31,12 +31,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'bootstrap4',
+    'django_filters',
+    'django_tables2',
+    'formtools',
+    'two_factor',
+    'sorl.thumbnail',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -45,9 +54,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'dashboardlte.urls'
 
@@ -118,3 +129,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+HENDRIX_CHILD_RESOURCES = (
+    #'dashboard.resources.MessageResource',
+    'hendrix.contrib.async.resources.MessageResource',
+    'hendrix.contrib.resources.static.DefaultDjangoStaticResource',
+)
+
+BOOTSTRAP4 = {
+    'error_css_class': 'bootstrap4-error',
+    'required_css_class': 'bootstrap4-required',
+    'javascript_in_head': True,
+    'include_jquery': True,
+}
+
+
+LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_URL= "/login"
+
+
